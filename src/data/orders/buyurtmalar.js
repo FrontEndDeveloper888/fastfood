@@ -1,4 +1,5 @@
-export const orders = [{
+export const orders = [
+  {
     id: 8549,
     name: "Muhammad Jumayev",
     phone: "(+99 893) 461-41-88",
@@ -11,15 +12,16 @@ export const orders = [{
     flial: "Fast Food Maksim Gorkiy",
     status: "new",
     orders: [
-        {
-            productName: "Shaurma",
-            price: 15000,
-            count: 4,
-        },
-        {
-            productName: "Shaurma",
-            price: 15000,
-            count: 4,
-        },
+      {
+        productName: "Shaurma",
+        price: 15000,
+        count: 4,
+      },
+      {
+        productName: "Shaurma",
+        price: 15000,
+        count: 4,
+      },
     ],
-}];
+  },
+];

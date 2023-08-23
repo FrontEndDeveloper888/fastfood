@@ -24,11 +24,10 @@ import {
 } from "react-icons/fi";
 import { RxLayers } from "react-icons/rx";
 import { CiSettings } from "react-icons/ci";
-import { TextField } from "@mui/material";
-import { ListCard } from "./mahsulotlar/maxsulotlar";
-import { Orders } from "./buyurtmalar/buyurtmalar";
-import { Category } from "./categoriyalar/categoriyalar";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { CiAlignTop, CiGrid2H } from "react-icons/ci";
+import { FiEdit2 } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const drawerWidth = 300;
 
@@ -100,9 +99,12 @@ const CustomDrawer = styled(MuiDrawer, {
 export function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(Index);
   const [userActivated, setUserActivated] = useState(false);
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState();
+  const [vertical, setVertical] = useState();
+  // const location = useLocation();
 
   useEffect(() => {
     const isUserActivated = localStorage.getItem("userActivated") === "true";
@@ -120,10 +122,6 @@ export function MiniDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const handleListItemClick = (index) => {
-    setActiveIndex(index);
   };
 
   return (
@@ -198,7 +196,7 @@ export function MiniDrawer() {
                   color: "#2D3A45",
                   textAlign: "left",
                   fontFamily: "SFProDisplay, sans-serif",
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: 600,
                 }}
               >
@@ -206,7 +204,170 @@ export function MiniDrawer() {
               </Typography>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <TextField type="text" placeholder="Kiritish" />
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  display: "flex ",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRight: "3px solid #EDEFF3",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "1200px",
+                    height: "40px",
+                    backgroundColor: "#EDEFF3",
+                    borderRadius: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    p: 1,
+                    mx: "100px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      backgroundColor: isActive === 1 ? "#fff" : "",
+                      px: "120px",
+                      py: "6px",
+                      borderRadius: 10,
+                      boxShadow:
+                        isActive === 1
+                          ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                          : "",
+                      cursor: "pointer",
+
+                      color: isActive === 1 ? "black" : "#A0A7AD",
+                    }}
+                    onClick={() => setIsActive(1)}
+                  >
+                    <Typography sx={{ fontSize: 15 }}>Yangi</Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      px: "100px",
+                      py: "6px",
+                      borderRadius: 10,
+                      backgroundColor: isActive === 2 ? "#fff" : "",
+                      boxShadow:
+                        isActive === 2
+                          ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                          : "",
+                      cursor: "pointer",
+
+                      color: isActive === 2 ? "black" : "#A0A7AD",
+                    }}
+                    onClick={() => setIsActive(2)}
+                  >
+                    <Typography sx={{ fontSize: 15 }}>
+                      Qabul qilingan
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      backgroundColor: isActive === 3 ? "#fff" : "",
+                      px: "120px",
+                      py: "6px",
+                      borderRadius: 10,
+                      boxShadow:
+                        isActive === 3
+                          ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                          : "",
+                      cursor: "pointer",
+                      color: isActive === 3 ? "black" : "#A0A7AD",
+                    }}
+                    onClick={() => setIsActive(3)}
+                  >
+                    <Typography sx={{ fontSize: 15 }}>Jo'natilgan</Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      backgroundColor: isActive === 4 ? "#fff" : "",
+                      px: "120px",
+                      py: "6px",
+                      borderRadius: 10,
+                      boxShadow:
+                        isActive === 4
+                          ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                          : "",
+                      cursor: "pointer",
+
+                      color: isActive === 4 ? "black" : "#A0A7AD",
+                    }}
+                    onClick={() => setIsActive(4)}
+                  >
+                    <Typography sx={{ fontSize: 15 }}>Yopilgan</Typography>
+                  </Box>
+                </Box>
+              </Box>
+              <Box>
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      backgroundColor: "#EDEFF3",
+                      gap: "10px",
+                      borderRadius: 10,
+                      p: 1,
+                      mx: "50px",
+                      width: "90px",
+                      height: "40px",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "40px",
+                        height: "40px",
+                        backgroundColor: vertical === 1 ? "#fff" : "",
+                        color: vertical === 1 ? "black" : "#A0A7AD",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+                        boxShadow:
+                          vertical === 1
+                            ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                            : "",
+                      }}
+                      onClick={() => setVertical(1)}
+                    >
+                      <CiGrid2H style={{ fontSize: 20 }} />
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "40px",
+                        height: "40px",
+                        backgroundColor: vertical === 2 ? "#fff" : "",
+                        color: vertical === 2 ? "black" : "#A0A7AD",
+                        borderRadius: "50%",
+                        cursor: "pointer",
+
+                        boxShadow:
+                          vertical === 2
+                            ? "4px 4px 15px 0px rgba(0, 0, 0, 0.2)"
+                            : "",
+                      }}
+                      onClick={() => setVertical(2)}
+                    >
+                      <CiAlignTop style={{ fontSize: 20 }} />
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Toolbar>
@@ -284,6 +445,7 @@ export function MiniDrawer() {
           {[
             {
               text: "Buyurtmalar",
+              path: "/buyurtmalar",
               icon: (
                 <FiCheckCircle
                   sx={{
@@ -297,6 +459,7 @@ export function MiniDrawer() {
             },
             {
               text: "Maxsulotlar",
+              path: "/maxsulotlar",
               icon: (
                 <FiArchive
                   sx={{
@@ -310,6 +473,7 @@ export function MiniDrawer() {
             },
             {
               text: "Kategoriyalar",
+              path: "/kategoriyalar",
               icon: (
                 <RxLayers
                   sx={{
@@ -323,6 +487,7 @@ export function MiniDrawer() {
             },
             {
               text: "Filiallar",
+              path: "/filiallar",
               icon: (
                 <FiMapPin
                   sx={{
@@ -336,6 +501,7 @@ export function MiniDrawer() {
             },
             {
               text: "Mijozlar",
+              path: "/mijozlar",
               icon: (
                 <FiUsers
                   sx={{
@@ -349,6 +515,7 @@ export function MiniDrawer() {
             },
             {
               text: "Xisobot",
+              path: "/xisobot",
               icon: (
                 <FiBarChart2
                   sx={{
@@ -362,6 +529,7 @@ export function MiniDrawer() {
             },
             {
               text: "Katalog",
+              path: "/katalog",
               icon: (
                 <CiSettings
                   sx={{
@@ -373,10 +541,10 @@ export function MiniDrawer() {
                 />
               ),
             },
-          ].map(({ text, icon }, index) => (
+          ].map(({ text, icon, path }, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
-                onClick={() => handleListItemClick(index)}
+                onClick={() => navigate(path)}
                 sx={{
                   borderLeft: open ? "5px solid #FCB600" : "0px ",
                   minHeight: 48,
@@ -492,65 +660,7 @@ export function MiniDrawer() {
           minHeight: "92vh",
         }}
       >
-        {activeIndex === 0 && <Orders />}
-        {activeIndex === 1 && <ListCard />}
-        {activeIndex === 2 && <Category />}
-        {activeIndex === 3 && (
-          <Typography
-            sx={{
-              textAlign: "center",
-              justifyContent: "center",
-              marginTop: "400px",
-              fontSize: "50px",
-              fontWeight: "bold",
-              color: "#c0b7b7",
-            }}
-          >
-            Hali sahifa ishga tushirilmadi !!!
-          </Typography>
-        )}
-        {activeIndex === 4 && (
-          <Typography
-            sx={{
-              textAlign: "center",
-              justifyContent: "center",
-              marginTop: "400px",
-              fontSize: "50px",
-              fontWeight: "bold",
-              color: "#c0b7b7",
-            }}
-          >
-            Hali sahifa ishga tushirilmadi !!!
-          </Typography>
-        )}
-        {activeIndex === 5 && (
-          <Typography
-            sx={{
-              textAlign: "center",
-              justifyContent: "center",
-              marginTop: "400px",
-              fontSize: "50px",
-              fontWeight: "bold",
-              color: "#c0b7b7",
-            }}
-          >
-            Hali sahifa ishga tushirilmadi !!!
-          </Typography>
-        )}
-        {activeIndex === 6 && (
-          <Typography
-            sx={{
-              textAlign: "center",
-              justifyContent: "center",
-              marginTop: "400px",
-              fontSize: "50px",
-              fontWeight: "bold",
-              color: "#c0b7b7",
-            }}
-          >
-            Hali sahifa ishga tushirilmadi !!!
-          </Typography>
-        )}
+        <Outlet />
       </Box>
     </Box>
   );
